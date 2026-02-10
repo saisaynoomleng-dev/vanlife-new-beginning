@@ -16,6 +16,7 @@
 - Stripe(Payment)
 - Drizzle(ORM)
 - Resend(Email)
+- zod(validation)
 
 ---
 

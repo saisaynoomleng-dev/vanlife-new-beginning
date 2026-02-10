@@ -18,3 +18,10 @@ export type NewsletterFormStateProps = {
   status: string;
   message: string;
 };
+
+// Contact Us Form Props
+export type ContactUsFormStateProps = {
+  status: string;
+  message: string;
+  field?: string;
+};

@@ -5,3 +5,10 @@ export type BoundedProps = {
   isPadded?: boolean;
   children: React.ReactNode;
 };
+
+// CTA Props
+export type CTAProps = {
+  children: React.ReactNode;
+  href: string;
+  className?: string;
+};

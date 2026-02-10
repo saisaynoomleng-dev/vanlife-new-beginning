@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import { ClerkAPIError, OAuthStrategy } from '@clerk/types';
 import { isClerkAPIResponseError } from '@clerk/nextjs/errors';
 import Link from 'next/link';
+import Bounded from '@/components/Bounded';
 
 const SignInPage = () => {
   const { isLoaded, signIn, setActive } = useSignIn();
@@ -62,110 +63,112 @@ const SignInPage = () => {
   };
 
   return (
-    <form
-      className="py-5 px-5 md:px-8 lg:px-10 flex flex-col max-w-100 mx-auto gap-y-10 shadow"
-      onSubmit={handleSubmit}
-    >
-      <h2 className="font-semibold text-fs-500 text-center mb-10">Sign In</h2>
+    <Bounded isPadded>
+      <form
+        className="py-5 px-5 md:px-8 lg:px-10 flex flex-col max-w-100 mx-auto gap-y-10 shadow"
+        onSubmit={handleSubmit}
+      >
+        <h2 className="font-semibold text-fs-500 text-center mb-10">Sign In</h2>
 
-      <div className="grid grid-cols-3 gap-y-5 gap-x-5 place-items-center">
-        <div>
-          <Button
-            variant="oauth"
-            type="button"
-            onClick={() => handleOAuth('oauth_github')}
+        <div className="grid grid-cols-3 gap-y-5 gap-x-5 place-items-center">
+          <div>
+            <Button
+              variant="oauth"
+              type="button"
+              onClick={() => handleOAuth('oauth_github')}
+            >
+              <FaGithub className="group-hover:text-white" />
+            </Button>
+          </div>
+
+          <div>
+            <Button
+              variant="oauth"
+              type="button"
+              onClick={() => handleOAuth('oauth_google')}
+            >
+              <FaGoogle className="group-hover:text-white" />
+            </Button>
+          </div>
+
+          <div>
+            <Button
+              variant="oauth"
+              type="button"
+              className="place-self-end"
+              onClick={() => handleOAuth('oauth_apple')}
+            >
+              <FaApple className="group-hover:text-white" />
+            </Button>
+          </div>
+        </div>
+
+        <div className="divider"></div>
+
+        <div className="space-y-1">
+          <label htmlFor="sign-in-email" className="form-label">
+            Email
+          </label>
+          <Input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            id="sign-in-email"
+            placeholder="johndoe@example.com"
+            autoComplete="email"
+            required
+          />
+        </div>
+
+        <div className="space-y-1 relative">
+          <label htmlFor="sign-in-password" className="form-label">
+            Password
+          </label>
+          <Input
+            type={showPassword ? 'text' : 'password'}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            id="sign-in-password"
+            required
+          />
+          <div className="absolute right-2 top-[50%]">
+            {showPassword ? (
+              <button type="button" onClick={() => setShowPassword(false)}>
+                <FaEyeSlash className="text-brand-black-200" />
+              </button>
+            ) : (
+              <button type="button" onClick={() => setShowPassword(true)}>
+                <FaEye className="text-brand-black-200" />
+              </button>
+            )}
+          </div>
+        </div>
+
+        <div id="clerk-captcha"></div>
+
+        {errors && (
+          <ul>
+            {errors.map((el, i) => (
+              <li key={i} className="form-error-message">
+                {el.longMessage}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <SubmitButton>Submit</SubmitButton>
+
+        <p className="text-fs-300">
+          Don&apos;t have an account yet?{' '}
+          <Link
+            href="/sign-up"
+            className="text-brand-orange-400 underline font-semibold"
           >
-            <FaGithub className="group-hover:text-white" />
-          </Button>
-        </div>
-
-        <div>
-          <Button
-            variant="oauth"
-            type="button"
-            onClick={() => handleOAuth('oauth_google')}
-          >
-            <FaGoogle className="group-hover:text-white" />
-          </Button>
-        </div>
-
-        <div>
-          <Button
-            variant="oauth"
-            type="button"
-            className="place-self-end"
-            onClick={() => handleOAuth('oauth_apple')}
-          >
-            <FaApple className="group-hover:text-white" />
-          </Button>
-        </div>
-      </div>
-
-      <div className="divider"></div>
-
-      <div className="space-y-1">
-        <label htmlFor="sign-in-email" className="form-label">
-          Email
-        </label>
-        <Input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          id="sign-in-email"
-          placeholder="johndoe@example.com"
-          autoComplete="email"
-          required
-        />
-      </div>
-
-      <div className="space-y-1 relative">
-        <label htmlFor="sign-in-password" className="form-label">
-          Password
-        </label>
-        <Input
-          type={showPassword ? 'text' : 'password'}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          id="sign-in-password"
-          required
-        />
-        <div className="absolute right-2 top-[50%]">
-          {showPassword ? (
-            <button type="button" onClick={() => setShowPassword(false)}>
-              <FaEyeSlash className="text-brand-black-200" />
-            </button>
-          ) : (
-            <button type="button" onClick={() => setShowPassword(true)}>
-              <FaEye className="text-brand-black-200" />
-            </button>
-          )}
-        </div>
-      </div>
-
-      <div id="clerk-captcha"></div>
-
-      {errors && (
-        <ul>
-          {errors.map((el, i) => (
-            <li key={i} className="form-error-message">
-              {el.longMessage}
-            </li>
-          ))}
-        </ul>
-      )}
-
-      <SubmitButton>Submit</SubmitButton>
-
-      <p className="text-fs-300">
-        Don&apos;t have an account yet?{' '}
-        <Link
-          href="/sign-up"
-          className="text-brand-orange-400 underline font-semibold"
-        >
-          Sign Up
-        </Link>
-      </p>
-    </form>
+            Sign Up
+          </Link>
+        </p>
+      </form>
+    </Bounded>
   );
 };
 

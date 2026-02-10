@@ -10,6 +10,8 @@ export const env = createEnv({
     SANITY_WRITE_TOKEN: z.string(),
     SANITY_WEBHOOK_SECRET: z.string(),
     DATABASE_URL: z.string(),
+    CLERK_SECRET_KEY: z.string(),
+    CLERK_WEBHOOK_SIGNING_SECRET: z.string(),
   },
   experimental__runtimeEnv: process.env,
 });

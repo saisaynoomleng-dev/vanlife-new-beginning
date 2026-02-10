@@ -22,6 +22,11 @@
 
 ## Project Timeline
 
-| Date     | Description                                              |
-| -------- | -------------------------------------------------------- |
-| 2/9/2026 | - Project Research<br> - CMS Setup<br> - Database Set up |
+| Date      | Description                                                                             |
+| --------- | --------------------------------------------------------------------------------------- |
+| 2/9/2026  | - Project Research<br> - CMS Setup<br> - Database Set up<br> - Seed Van Data to Neon DB |
+| 3/9/20206 | - Auth Setup                                                                            |
+
+---
+
+## Features

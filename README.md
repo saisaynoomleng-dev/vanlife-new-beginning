@@ -17,6 +17,7 @@
 - Drizzle(ORM)
 - Resend(Email)
 - zod(validation)
+- React Map Gl
 
 ---
 

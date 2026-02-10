@@ -15,6 +15,13 @@
       "when": 1770688208411,
       "tag": "0001_broad_kate_bishop",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1770745299345,
+      "tag": "0002_heavy_wendell_vaughn",
+      "breakpoints": true
     }
   ]
 }

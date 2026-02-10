@@ -33,6 +33,7 @@ export const UserTable = t.pgTable('users', {
   clerkUserId: t.varchar('clerk_user_id', { length: 255 }).notNull().unique(),
   imageUrl: t.varchar('image_url', { length: 255 }),
   role: userRoles('role').default('customer').notNull(),
+  isActive: t.boolean('is_active').default(true).notNull(),
   createdAt,
   updatedAt,
 });

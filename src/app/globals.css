@@ -168,3 +168,15 @@
     @apply text-pretty;
   }
 }
+
+@utility form-label {
+  @apply after:absolute after:content-["*"] after:ml-0.5 after:text-red-500 block;
+}
+
+@utility divider {
+  @apply h-px w-[80%] bg-brand-black-200/10 mx-auto;
+}
+
+@utility form-error-message {
+  @apply text-red-500! italic text-fs-300;
+}

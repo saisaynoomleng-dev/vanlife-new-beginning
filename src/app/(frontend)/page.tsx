@@ -1,6 +1,13 @@
 import Bounded from '@/components/Bounded';
 import CTA from '@/components/CTA';
+import { Metadata } from 'next';
 import Image from 'next/image';
+
+export const metadata: Metadata = {
+  title: 'Home',
+  description:
+    'Rent the perfect van for your next road trip. Explore a wide range of reliable, affordable adventure vans. Your journey starts here with easy online booking.',
+};
 
 export default function Home() {
   return (

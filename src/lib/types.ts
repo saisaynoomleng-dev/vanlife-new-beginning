@@ -12,3 +12,9 @@ export type CTAProps = {
   href: string;
   className?: string;
 };
+
+// Newsletter Form Props
+export type NewsletterFormStateProps = {
+  status: string;
+  message: string;
+};

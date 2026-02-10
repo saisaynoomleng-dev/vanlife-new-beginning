@@ -9,7 +9,8 @@ export const createdAt = t
 export const updatedAt = t
   .timestamp('updated_at', { withTimezone: true, mode: 'date' })
   .notNull()
-  .defaultNow();
+  .defaultNow()
+  .$onUpdate(() => new Date());
 
 export const userRoles = t.pgEnum('userRole', ['admin', 'customer']);
 
@@ -26,7 +27,7 @@ export const bookingStatus = t.pgEnum('bookingStatus', [
 ]);
 
 export const UserTable = t.pgTable('users', {
-  id: t.uuid('id').primaryKey(),
+  id: t.uuid('id').primaryKey().defaultRandom(),
   name: t.varchar('name', { length: 255 }).notNull(),
   email: t.varchar('email', { length: 255 }).notNull(),
   clerkUserId: t.varchar('clerk_user_id', { length: 255 }).notNull().unique(),
@@ -37,12 +38,13 @@ export const UserTable = t.pgTable('users', {
 });
 
 export const VanTable = t.pgTable('vans', {
-  id: t.uuid('id').primaryKey(),
+  id: t.uuid('id').primaryKey().defaultRandom(),
   name: t.varchar('name', { length: 255 }).notNull(),
   sanityId: t.varchar('sanity_id', { length: 255 }).notNull().unique(),
   sanitySlug: t.varchar('sanity_slug', { length: 255 }).notNull(),
   pricePerDayInCents: t.integer('price_per_day_in_cents').notNull(),
   isAvailable: t.boolean('is_available').notNull().default(true),
+  isDeleted: t.boolean('is_deleted').default(false),
   createdAt,
   updatedAt,
 });
@@ -50,7 +52,7 @@ export const VanTable = t.pgTable('vans', {
 export const BookingTable = t.pgTable(
   'bookings',
   {
-    id: t.uuid('id').primaryKey(),
+    id: t.uuid('id').primaryKey().defaultRandom(),
     userId: t
       .uuid('user_id')
       .references(() => UserTable.id, { onDelete: 'cascade' })
@@ -77,7 +79,7 @@ export const BookingTable = t.pgTable(
 );
 
 export const AddressTable = t.pgTable('addresses', {
-  id: t.uuid('id').primaryKey(),
+  id: t.uuid('id').primaryKey().defaultRandom(),
   userId: t
     .uuid('user_id')
     .references(() => UserTable.id, { onDelete: 'cascade' })
@@ -94,7 +96,7 @@ export const AddressTable = t.pgTable('addresses', {
 });
 
 export const ReviewTable = t.pgTable('reviews', {
-  id: t.uuid('id').primaryKey(),
+  id: t.uuid('id').primaryKey().defaultRandom(),
   userId: t
     .uuid('user_id')
     .references(() => UserTable.id, { onDelete: 'cascade' })
@@ -116,7 +118,7 @@ export const ReviewTable = t.pgTable('reviews', {
 export const NewsletterSubscriptionTable = t.pgTable(
   'newsletter_subscriptions',
   {
-    id: t.uuid('id').primaryKey(),
+    id: t.uuid('id').primaryKey().defaultRandom(),
     email: t.varchar('email', { length: 255 }).notNull().unique(),
     createdAt,
     updatedAt,

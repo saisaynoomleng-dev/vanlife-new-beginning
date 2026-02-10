@@ -3,6 +3,7 @@ import './globals.css';
 import { roboto } from '@/lib/fonts';
 import { SanityLive } from '@/sanity/lib/live';
 import { ClerkProvider } from '@clerk/nextjs';
+import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
   title: {
@@ -24,6 +25,7 @@ export default function RootLayout({
         <body className={`${roboto.variable} antialiased`}>
           {children}
           <SanityLive />
+          <Toaster richColors closeButton position="top-center" />
         </body>
       </html>
     </ClerkProvider>

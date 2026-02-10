@@ -18,11 +18,13 @@ const Header = () => {
   const { isSignedIn, user } = useUser();
   const pathName = usePathname();
 
+  const imageUrl = user?.imageUrl;
+
   return (
     <header className="px-5 py-3 flex justify-between items-center">
-      <div>
+      <Link href="/">
         <BrandLogo />
-      </div>
+      </Link>
 
       <nav className="flex gap-x-3">
         {NAV_LINKS.map((link) => (
@@ -41,7 +43,7 @@ const Header = () => {
         {isSignedIn ? (
           <Link href="/user">
             <Image
-              src={user.imageUrl ?? 'https://placehold.co/30'}
+              src={imageUrl || 'https://placehold.co/30'}
               alt={`${user.firstName}'s photo` || ''}
               width={30}
               height={30}

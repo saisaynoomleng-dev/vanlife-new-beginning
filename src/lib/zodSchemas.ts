@@ -42,3 +42,12 @@ export const editUserProfileFormSchema = z.object({
     }, '.jpg, .jpeg, .png and .webp files are accepted.')
     .optional(),
 });
+
+export const editUserAddressFormSchema = z.object({
+  address1: z.string().min(5, 'Address 1 should have at least 5 characters'),
+  address2: z.string().min(1, 'Address 2 should have at least 1 characters'),
+  city: z.string().min(5, 'City should have at least 5 characters'),
+  state: z.string().min(1, 'State should have at least 1 characters'),
+  zip: z.string().min(3, 'Zip should have at least 3 characters'),
+  country: z.string().min(3, 'Country should have at least 3 characters'),
+});

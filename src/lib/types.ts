@@ -31,3 +31,9 @@ export type EditUserProfileProps = {
   message: string;
   field?: string;
 };
+
+export type EditUserAddressProps = {
+  status: string;
+  message: string;
+  field?: string;
+};

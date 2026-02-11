@@ -25,3 +25,9 @@ export type ContactUsFormStateProps = {
   message: string;
   field?: string;
 };
+
+export type EditUserProfileProps = {
+  status: string;
+  message: string;
+  field?: string;
+};

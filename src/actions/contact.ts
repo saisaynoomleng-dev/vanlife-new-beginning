@@ -44,7 +44,8 @@ export const handleContact = async (
       status: 'success',
       message: "Thank you contacting Us! We'll be in touch!",
     };
-  } catch (error) {
+  } catch (error: any) {
+    console.log(error);
     return {
       status: 'error',
       message: 'Something went wrong!',

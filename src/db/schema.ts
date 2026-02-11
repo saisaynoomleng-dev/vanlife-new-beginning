@@ -144,7 +144,7 @@ export const UserTableRelations = relations(UserTable, ({ one, many }) => ({
   reviews: many(ReviewTable),
 }));
 
-export const VanTableRelations = relations(VanTable, ({ one, many }) => ({
+export const VanTableRelations = relations(VanTable, ({ many }) => ({
   bookings: many(BookingTable),
   reviews: many(ReviewTable),
 }));

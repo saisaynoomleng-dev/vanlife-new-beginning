@@ -21,7 +21,7 @@ const Header = () => {
   const imageUrl = user?.imageUrl;
 
   return (
-    <header className="px-5 py-3 flex justify-between items-center">
+    <header className="px-5 py-3 flex justify-between items-center shadow">
       <Link href="/">
         <BrandLogo />
       </Link>

@@ -16,3 +16,7 @@ export const formatDate = (date: string) => {
     year: 'numeric',
   });
 };
+
+export const formatDash = (text: string) => {
+  return text.replace(/-/g, ' ');
+};

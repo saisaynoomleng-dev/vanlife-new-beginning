@@ -2,7 +2,8 @@ import { defineQuery } from 'next-sanity';
 
 export const ALL_VANS_QUERY = defineQuery(`{
   "vans": *[_type == 'van' 
-          && defined(slug.current)]{
+          && defined(slug.current)]
+          [$startIndex...$endIndex]{
             name,
             mainImage{
               alt,
